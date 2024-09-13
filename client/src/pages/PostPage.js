@@ -34,7 +34,7 @@ export default function PostPage() {
       {userInfo.id === postInfo.author._id && (
         <div className="edit-row">
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
-            Edit this post
+            Edit this Project
           </Link>
         </div>
       )}
