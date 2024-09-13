@@ -43,7 +43,6 @@ export default function PostPage() {
       </div>
       <div className="content" dangerouslySetInnerHTML={{__html:postInfo.content}} />
 
-      {/* Add a button to redirect to the project's todo list */}
       <Link className="todo-btn" to={`/post/${postInfo._id}/todos`}>
         View Project Todos
       </Link>

@@ -6,13 +6,13 @@ export const TodoPage = () => {
     const [todos, setTodos] = useState([]);
     const [popupActive, setPopupActive] = useState(false);
     const [newTodo, setNewTodo] = useState("");
-    const { id } = useParams();  // projectId from URL
+    const { id } = useParams();  
 
     useEffect(() => {
         GetTodos();
     }, [id]);
 
-    // Function to sort todos: pending tasks first, completed tasks last
+
     const sortTodos = (todos) => {
         return todos.sort((a, b) => a.complete - b.complete);
     };
@@ -21,7 +21,7 @@ export const TodoPage = () => {
         fetch(`http://localhost:4000/post/${id}/todos`)
             .then(res => res.json())
             .then(data => {
-                setTodos(sortTodos(data));  // Sort todos and then set state
+                setTodos(sortTodos(data));  
             })
             .catch((err) => console.error("Error: ", err));
     };
@@ -35,7 +35,7 @@ export const TodoPage = () => {
             body: JSON.stringify({ text: newTodo })
         }).then(res => res.json());
 
-        setTodos(sortTodos([...todos, data]));  // Sort todos after adding new one
+        setTodos(sortTodos([...todos, data])); 
 
         setPopupActive(false);
         setNewTodo("");
@@ -43,13 +43,12 @@ export const TodoPage = () => {
 
     const completeTodo = async todoId => {
         try {
-            // Fetch the todo to check its current completion status
+            
             const todo = todos.find(t => t._id === todoId);
             if (todo.complete) {
-                // If the todo is already complete, do nothing
                 return;
             }
-            // Mark the todo as complete
+
             const response = await fetch(`http://localhost:4000/post/${id}/todo/complete/${todoId}`, {
                 method: "PUT",
                 headers: {
