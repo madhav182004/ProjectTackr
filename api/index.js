@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+  require('dotenv').config();
+}
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -14,9 +18,9 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'asdfe45we45w345wegw345werjktjwertkj';
+const secret = process.env.SECRET_KEY;
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/project';
+const MONGO_URL = process.env.DB_URL;
 
 app.use(cors({
   origin: 'http://localhost:3000',
@@ -64,7 +68,6 @@ app.post('/login', async (req, res) => {
   }
   const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
-    // logged in
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
       res.cookie('token', token, { httpOnly: true, sameSite: 'strict' }).json({
@@ -217,9 +220,7 @@ app.put('/post/:id/todo/complete/:todoId', async (req, res) => {
 });
 
 
-
 app.listen(4000, () => {
   console.log('Server running on port 4000');
 });
-
 
