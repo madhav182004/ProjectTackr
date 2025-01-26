@@ -96,5 +96,5 @@
 
 ## Acknowledgments
 
-- Thanks to the developers and community members who contributed to the technologies used in this project. This project was a task given in the second round of interview in an internship offer for the post of backend developer. So please ignore the UI an the frontend beacuse it is kept very minimilistic. The main focus was creating a proper backend that suppports all the functionality. 
+Thanks to the developers and community members who contributed to the technologies used in this project. This project was a task given in the second round of interview in an internship offer for the post of backend developer. So please ignore the UI an the frontend beacuse it is kept very minimilistic. The main focus was creating a proper backend that suppports all the functionality. 
 
